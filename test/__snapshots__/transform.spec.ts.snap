@@ -1,0 +1,172 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`transformer appends css import to lit-element with named import: import-lit-named 1`] = `
+"import { LitElement, html, css } from 'lit-element'
+
+class LitNamed extends LitElement {
+  render() {
+    return html\` <div>LitNamed</div> \`
+  }
+}
+
+LitNamed.styles = css\`.map { display: block; }\`
+customElements.define('lit-named', LitNamed)
+"
+`;
+
+exports[`transformer appends named css import to lit-element with default and named import: import-lit-default-named 1`] = `
+"import LIT, { html, css } from 'lit-element'
+
+class LitDefaultNamed extends LIT.LitElement {
+  render() {
+    return html\` <div>LitDefaultNamed</div> \`
+  }
+}
+
+LitDefaultNamed.styles = css\`.map { display: block; }\`
+customElements.define('lit-default-named', LitDefaultNamed)
+"
+`;
+
+exports[`transformer appends named css import to lit-element with default import: import-lit-default 1`] = `
+"import LIT, { css } from 'lit-element'
+
+class LitDefault extends LIT.LitElement {
+  render() {
+    return LIT.html\`
+      <div>LitNamespaced</div>
+    \`
+  }
+}
+
+LitDefault.styles = css\`.map { display: block; }\`
+customElements.define('lit-default', LitDefault)
+"
+`;
+
+exports[`transformer does not append named css import when lit-element import is namespaced: import-lit-namespaced 1`] = `
+"import * as LIT from 'lit-element'
+
+class LitNamespaced extends LIT.LitElement {
+  render() {
+    return LIT.html\`
+      <div>LitNamespaced</div>
+    \`
+  }
+}
+
+LitNamespaced.styles = LIT.css\`.map { display: block; }\`
+customElements.define('lit-namespaced', LitNamespaced)
+"
+`;
+
+exports[`transformer inlining stylesheet is a member of an array assignment: inline-stylesheet-multi-prototype 1`] = `
+"import { LitElement, html, css } from 'lit-element'
+
+class SingleComponent extends LitElement {
+  render() {
+    return html\`<div>Single Component</div>\`
+  }
+}
+
+SingleComponent.styles = [css\`html,
+body {
+  margin: 0;
+  padding: 0;
+}
+\`, css\`.map { display: block; }\`]
+
+customElements.define('s-c', SingleComponent)
+"
+`;
+
+exports[`transformer inlining stylesheet is a single assignment: inline-stylesheet-single-prototype 1`] = `
+"import { LitElement, html, css } from 'lit-element'
+
+class SingleComponent extends LitElement {
+  render() {
+    return html\`<div>Single Component</div>\`
+  }
+}
+
+SingleComponent.styles = css\`.map { display: block; }\`
+
+customElements.define('s-c', SingleComponent)
+"
+`;
+
+exports[`transformer removes css import expression: remove-css-import-expression 1`] = `
+"import { LitElement, html, css } from 'lit-element'
+
+class SingleComponent extends LitElement {
+  render() {
+    return html\`<div>Single Component</div>\`
+  }
+}
+
+SingleComponent.styles = css\`.map { display: block; }\`
+
+customElements.define('s-c', SingleComponent)
+"
+`;
+
+exports[`transformer replace references in dynamic object inlined in classmap: classmap-inline 1`] = `
+"import { LitElement, html, css } from 'lit-element'
+import { classMap } from 'lit-html/directives/class-map'
+
+class LitClassmapInline extends LitElement {
+  render() {
+    return html\`
+      <div
+        class=\${classMap({
+          'a': true,
+          'a-b': true,
+        })}
+      >
+        LitClassmapInline
+      </div>
+    \`
+  }
+}
+
+customElements.define('lit-classmap-inline', LitClassmapInline)
+"
+`;
+
+exports[`transformer replace references in dynamic object specified in classMap: classmap-element 1`] = `
+"import { LitElement, html, css } from 'lit-element'
+import { classMap } from 'lit-html/directives/class-map'
+
+class LitClassmap extends LitElement {
+  render() {
+    const classes = classMap({
+      'a': true,
+      'a-b': true,
+    })
+
+    return html\`<div class=\\"\${classes}\\">LitClassmap</div>\`
+  }
+}
+
+customElements.define('lit-classmap', LitClassmap)
+"
+`;
+
+exports[`transformer replace references replaces references in object properties: classmap-static-ref 1`] = `
+"import { LitElement, html, css } from 'lit-element'
+import { classMap } from 'lit-html/directives/class-map'
+
+const classes = {
+  'a': true,
+  'a-b': true,
+}
+
+class ClassmapStaticRef extends LitElement {
+  render() {
+    return html\` <div class=\${classMap(classes)}>ClassmapStaticRef</div> \`
+  }
+}
+
+export default ClassmapStaticRef
+"
+`;

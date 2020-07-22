@@ -34,9 +34,7 @@ const loadCSS = async (
     )
 
     if (!absolutePath || !isAbsolute(absolutePath)) {
-      throw new Error(
-        `LitInlineCss could not resolve absolute path for import:, ${importSource}`
-      )
+      return
     }
 
     const extension = path.extname(absolutePath)

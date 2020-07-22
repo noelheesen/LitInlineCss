@@ -26,7 +26,10 @@ const resolveAbsolutePath = (
     try {
       absolutePath = resolve.sync(importSource, { basedir: rootDir })
     } catch (error) {
-      return absolutePath
+      console.warn(
+        `LitInlineCss could not resolve absolute path for: ${importSource}`
+      )
+      return
     }
   }
 
