@@ -1,5 +1,5 @@
 import MagicString from 'magic-string'
-import { DynamicAcornNode, CSSResult } from '@/types'
+import { DynamicAcornNode, CSSResult } from '../types'
 
 const should = (node: DynamicAcornNode, css: CSSResult): boolean => {
   return (

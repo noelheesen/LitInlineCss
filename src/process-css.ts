@@ -1,7 +1,7 @@
 import { isAbsolute } from 'path'
-import { less, postcss, sass, stylus } from '@/css-processors'
-import immutable from '@/util/immutable'
-import type { PostCSSProcessResult } from '@/types'
+import { less, postcss, sass, stylus } from './css-processors'
+import immutable from './util/immutable'
+import type { PostCSSProcessResult } from './types'
 
 const defaultProcessors = [less, sass, stylus]
 

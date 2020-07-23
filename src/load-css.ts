@@ -1,13 +1,13 @@
 import * as walk from 'acorn-walk'
 import path, { isAbsolute } from 'path'
-import immutable from '@/util/immutable'
-import readFileSync from '@/util/read-file-sync'
-import resolveAbsolutePath from '@/util/resolve-absolute-path'
+import immutable from './util/immutable'
+import readFileSync from './util/read-file-sync'
+import resolveAbsolutePath from './util/resolve-absolute-path'
 import type {
   DynamicAcornNode,
   CSSImportNodeSpecifier,
   CSSLoaderResult,
-} from '@/types'
+} from './types'
 
 const loadCSS = async (
   AST: DynamicAcornNode,

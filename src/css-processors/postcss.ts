@@ -1,6 +1,6 @@
 import cssmodules from 'postcss-modules'
 import type { Plugin } from 'postcss'
-import type { PostCSSProcessResult } from '@/types'
+import type { PostCSSProcessResult } from '../types'
 
 const process = async (
   source: string,

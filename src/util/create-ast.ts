@@ -1,5 +1,5 @@
 import * as acorn from 'acorn'
-import type { DynamicAcornNode } from '@/types'
+import type { DynamicAcornNode } from '../types'
 
 const createAST = (source: string): DynamicAcornNode => {
   const AST: DynamicAcornNode = acorn.parse(source, {

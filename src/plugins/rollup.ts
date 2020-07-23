@@ -1,5 +1,5 @@
 import type { Plugin, PluginContext } from 'rollup'
-import litInlineCSSTransform from '@/transform'
+import litInlineCSSTransform from '../transform'
 
 const name = 'rollup-plugin-lit-inline-css'
 

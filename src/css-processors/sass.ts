@@ -1,4 +1,4 @@
-import type { CSSProcessResult } from '@/types'
+import type { CSSProcessResult } from '../types'
 
 const process = async (source: string): Promise<CSSProcessResult> => {
   const sass = await import('sass')

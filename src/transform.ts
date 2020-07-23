@@ -1,15 +1,14 @@
 import * as walk from 'acorn-walk'
 import MagicString from 'magic-string'
-import inlineStylesheet from '@/mutators/inline-stylesheet'
-import removeImport from '@/mutators/remove-import'
-import replaceReferences from '@/mutators/replace-references'
-import createAST from '@/util/create-ast'
-import findLitElementImport from '@/util/find-lit-element-import'
-import loadCSS from '@/load-css'
-import processCSS from '@/process-css'
-
-import type { DynamicAcornNode, LitInlineCSSResult, CSSResult } from '@/types'
+import inlineStylesheet from './mutators/inline-stylesheet'
+import removeImport from './mutators/remove-import'
+import replaceReferences from './mutators/replace-references'
+import createAST from './util/create-ast'
+import findLitElementImport from './util/find-lit-element-import'
 import immutable from './util/immutable'
+import loadCSS from './load-css'
+import processCSS from './process-css'
+import type { DynamicAcornNode, LitInlineCSSResult, CSSResult } from './types'
 
 /**
  * core transformer that loads all CSS imports and inlines them.

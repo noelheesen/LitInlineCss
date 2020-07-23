@@ -2,7 +2,8 @@ import type {
   DynamicAcornNode,
   LitImportNodeSpecifier,
   LitImportNode,
-} from '@/types'
+  Nullable,
+} from '../types'
 
 const findLitElementImport = (
   AST: DynamicAcornNode
