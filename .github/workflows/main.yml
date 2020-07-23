@@ -27,7 +27,7 @@ jobs:
 
     # Runs a single command using the runners shell
     - name: Build
-      run: sh scripts/build.sh
+      run: yarn build
   test:
     runs-on: ubuntu-latest
     
