@@ -1,5 +1,5 @@
-import createAST from '@/util/create-ast'
-import findLitElementImport from '@/util/find-lit-element-import'
+import createAST from '../../src/util/create-ast'
+import findLitElementImport from '../../src/util/find-lit-element-import'
 
 describe('when I want to retrieve lit-element import information from an AST', () => {
   it('provides defaultSpecifier', () => {

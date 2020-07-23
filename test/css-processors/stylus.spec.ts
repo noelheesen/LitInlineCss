@@ -1,7 +1,7 @@
 import path from 'path'
-import stylus from '@/css-processors/stylus'
-import readFileSync from '@/util/read-file-sync'
-import normalizeCSSTestResult from '@/util/normalize-css-test-result'
+import stylus from '../../src/css-processors/stylus'
+import readFileSync from '../../src/util/read-file-sync'
+import normalizeCSSTestResult from '../../src/util/normalize-css-test-result'
 
 const fixture = (...args: string[]) =>
   path.resolve(__dirname, '..', 'fixtures', 'styles', ...args)

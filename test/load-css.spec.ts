@@ -1,7 +1,7 @@
 import path from 'path'
-import createAST from '@/util/create-ast'
-import readFileSync from '@/util/read-file-sync'
-import loadCSS from '@/load-css'
+import createAST from '../src/util/create-ast'
+import readFileSync from '../src/util/read-file-sync'
+import loadCSS from '../src/load-css'
 
 const fixture = (...args: string[]) =>
   path.resolve(__dirname, 'fixtures', ...args)

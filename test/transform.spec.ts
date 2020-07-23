@@ -1,6 +1,6 @@
 import path from 'path'
-import transform from '@/transform'
-import readFileSync from '@/util/read-file-sync'
+import transform from '../src/transform'
+import readFileSync from '../src/util/read-file-sync'
 
 const fixture = (...partialPaths: string[]) =>
   path.resolve(__dirname, 'fixtures', ...partialPaths)

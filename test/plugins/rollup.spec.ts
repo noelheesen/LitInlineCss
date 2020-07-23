@@ -1,6 +1,6 @@
 import path from 'path'
 import { rollup } from 'rollup'
-import litInlineCss from '@/plugins/rollup'
+import litInlineCss from '../../src/plugins/rollup'
 
 const fixture = (...partialPaths: string[]) =>
   path.resolve(__dirname, '..', 'fixtures', ...partialPaths)
