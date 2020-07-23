@@ -22,8 +22,13 @@ jobs:
       - name: Initialize Repository
         run: yarn
 
-      - name: Test
-        run: yarn test
+      - name: Test:unit
+        run: yarn test --collectCoverage
+      
+      - name: Coveralls
+        uses: coverallsapp/github-action@master
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
 
   # This workflow contains a single job called "build"
   build:
