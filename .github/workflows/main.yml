@@ -57,7 +57,7 @@ jobs:
       - uses: actions/checkout@v2
       
       - name: Get Dist Artifacts
-        uses: actions/download-artifacts@v2
+        uses: actions/download-artifact@v2
         with:
           name: dist
       
