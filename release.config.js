@@ -1,3 +1,6 @@
 module.exports = {
-  branches: [{ name: 'alpha', channel: 'alpha', prerelease: 'alpha' }],
+  branches: [
+    { name: 'master' },
+    { name: 'alpha', channel: 'alpha', prerelease: 'alpha' },
+  ],
 }
