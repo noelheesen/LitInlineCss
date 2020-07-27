@@ -2,7 +2,11 @@
   "name": "lit-inline-css",
   "version": "0.0.0",
   "main": "dist/index.js",
+  "module": "dist/index.js",
   "license": "MIT",
+  "files": [
+    "dist/"
+  ],
   "scripts": {
     "build": "rimraf dist && tsc",
     "test": "jest --verbose"
