@@ -55,14 +55,15 @@ jobs:
     needs: [test, build]
     steps:
       - uses: actions/checkout@v2
-      
+
       - name: Get Dist Artifacts
         uses: actions/download-artifact@v2
         with:
           name: dist
-      
+          path: dist
+
       - name: Run Semantic Release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-        run: npx semantic-release --debug
+        run: npx semantic-release
