@@ -42,4 +42,18 @@ describe('when I want to process stylus into css', () => {
       /html,body{margin:0;padding:0;}/
     )
   })
+
+  it('provides a set of all unique import references by absolute path', async () => {
+    expect.assertions(1)
+
+    const filename = 'with-import.styl'
+    const absoluteSourcePath = fixture('stylus', filename)
+    const source = readFileSync(absoluteSourcePath)
+
+    const { dependencies } = await stylus.process(source, absoluteSourcePath)
+
+    const absoluteDependencyPath = fixture('stylus', 'is-imported.styl')
+
+    expect(dependencies.has(absoluteDependencyPath)).toBeTruthy()
+  })
 })

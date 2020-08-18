@@ -4,7 +4,8 @@ import type { PostCSSProcessResult } from '../types'
 
 const process = async (
   source: string,
-  absoluteSourcePath: string
+  absoluteSourcePath: string,
+  options: Record<string, any> = {}
 ): Promise<PostCSSProcessResult> => {
   const postcss = await import('postcss')
   const style = postcss.default
@@ -14,10 +15,10 @@ const process = async (
    * this map will be used to replace those references by it's value.
    */
   const classmap = new Map<string, string>()
+  const dependencies = new Set<string>()
 
-  // const { plugins = [] } = options
-  const plugins: Plugin<unknown>[] = []
-  const postCSSPlugins = Array.from(plugins)
+  const { plugins = [] } = options
+  const postCSSPlugins = Array.from(plugins as Plugin<unknown>[])
 
   postCSSPlugins.push(
     cssmodules({
@@ -32,14 +33,21 @@ const process = async (
   )
 
   const processor = style(postCSSPlugins)
-  const { css } = await processor.process(source, {
+  const { css, messages } = await processor.process(source, {
     from: absoluteSourcePath,
     to: absoluteSourcePath,
   })
 
+  for (const message of messages) {
+    if (message.type === 'dependency') {
+      dependencies.add(message.file)
+    }
+  }
+
   return {
     css,
     classmap,
+    dependencies,
   }
 }
 

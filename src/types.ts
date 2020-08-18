@@ -11,6 +11,7 @@ export interface CSSResult {
 
 export interface CSSProcessResult {
   css: string
+  dependencies: Set<string>
 }
 
 export interface PostCSSProcessResult extends CSSProcessResult {

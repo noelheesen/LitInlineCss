@@ -30,10 +30,23 @@ describe('when I want to process less into css', () => {
     const absoluteSourcePath = fixture('less', filename)
     const source = readFileSync(absoluteSourcePath)
 
-    const { css } = await less.process(source)
+    const { css } = await less.process(source, absoluteSourcePath)
 
     expect(normalizeCSSTestResult(css)).toMatch(
       /html,body{margin:0;padding:0;}/
     )
+  })
+
+  it('provides a set of all unique import references by absolute path', async () => {
+    expect.assertions(1)
+
+    const filename = 'with-import.less'
+    const absoluteSourcePath = fixture('less', filename)
+    const source = readFileSync(absoluteSourcePath)
+
+    const { dependencies } = await less.process(source, absoluteSourcePath)
+
+    const absoluteDependencyPath = fixture('less', 'is-imported.less')
+    expect(dependencies.has(absoluteDependencyPath)).toBeTruthy()
   })
 })

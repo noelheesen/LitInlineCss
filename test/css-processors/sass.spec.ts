@@ -31,13 +31,27 @@ describe('when I want to process sass into css', () => {
 
   it('processes base.scss', async () => {
     const filename = 'base.scss'
-    const id = fixture('sass', filename)
-    const source = readFileSync(id)
+    const absoluteSourcePath = fixture('sass', filename)
+    const source = readFileSync(absoluteSourcePath)
 
-    const { css } = await sass.process(source)
+    const { css } = await sass.process(source, absoluteSourcePath)
 
     expect(normalizeCSSTestResult(css)).toMatch(
       /html,body{margin:0;padding:0;}/
     )
+  })
+
+  it('provides a set of all unique import references by absolute path', async () => {
+    expect.assertions(1)
+
+    const filename = 'with-import.scss'
+    const absoluteSourcePath = fixture('sass', filename)
+    const source = readFileSync(absoluteSourcePath)
+
+    const { dependencies } = await sass.process(source, absoluteSourcePath)
+
+    const absoluteDependencyPath = fixture('sass', 'is-imported.scss')
+
+    expect(dependencies.has(absoluteDependencyPath)).toBeTruthy()
   })
 })

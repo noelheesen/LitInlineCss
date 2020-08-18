@@ -1,4 +1,5 @@
 import path from 'path'
+import atImport from 'postcss-import'
 import postcss from '../../src/css-processors/postcss'
 import readFileSync from '../../src/util/read-file-sync'
 import normalizeCSSTestResult from '../../src/util/normalize-css-test-result'
@@ -32,5 +33,27 @@ describe('when I want to process css with postcss', () => {
 
     expect(classmap.size).toBe(1)
     expect(classmap.get('map')).toBe('map')
+  })
+
+  it('provides a set of all unique import references by absolute path', async () => {
+    expect.assertions(1)
+
+    const filename = 'with-import.css'
+    const absoluteSourcePath = fixture('css', filename)
+    const source = readFileSync(absoluteSourcePath)
+
+    const options = {
+      plugins: [atImport()],
+    }
+
+    const { dependencies } = await postcss.process(
+      source,
+      absoluteSourcePath,
+      options
+    )
+
+    const absoluteDependencyPath = fixture('css', 'is-imported.css')
+
+    expect(dependencies.has(absoluteDependencyPath)).toBeTruthy()
   })
 })

@@ -162,48 +162,4 @@ describe('transformer', () => {
       expect(js).toMatchSnapshot('classmap-inline')
     })
   })
-
-  // const snapshots = [
-  //   {
-  //     name: 'import-lit-default',
-  //     fixture: 'import-lit-default.js',
-  //   },
-  //   {
-  //     name: 'import-lit-default-named',
-  //     fixture: 'import-lit-default-named.js',
-  //   },
-  //   {
-  //     name: 'import-lit-named',
-  //     fixture: 'import-lit-named.js',
-  //   },
-  //   {
-  //     name: 'import-lit-namespaced',
-  //     fixture: 'import-lit-namespaced.js',
-  //   },
-  //   {
-  //     name: 'import-css-multi-prototype',
-  //     fixture: 'import-css-multi-prototype.js',
-  //   },
-  //   {
-  //     name: 'import-css-multi-prototype-spread',
-  //     fixture: 'import-css-multi-prototype-spread.js',
-  //   },
-  //   {
-  //     name: 'import-css-multi-static',
-  //     fixture: 'import-css-multi-static.js',
-  //   },
-  // ]
-
-  // for (const testCase of snapshots) {
-  //   it(`transforms testcase: ${testCase.name}`, async () => {
-  //     expect.assertions(1)
-
-  //     const id = fixture(testCase.fixture)
-  //     const source = readFileSync(id)
-
-  //     const { js } = await transform(source, id)
-
-  //     expect(js).toMatchSnapshot(testCase.name)
-  //   })
-  // }
 })

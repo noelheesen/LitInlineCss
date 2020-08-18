@@ -11,3 +11,5 @@ declare module 'postcss-modules' {
     getJSON: (_, json: string) => void
   }): postcss.Plugin
 }
+
+declare module 'postcss-import'

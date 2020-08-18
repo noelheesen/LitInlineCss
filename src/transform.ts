@@ -25,7 +25,7 @@ const transform = async (
 ): Promise<LitInlineCSSResult> => {
   const AST = createAST(source)
   const litImport = findLitElementImport(AST)
-  const css = new Set<Readonly<CSSResult>>()
+  const cssResultSet = new Set<Readonly<CSSResult>>()
 
   if (!litImport) {
     throw new Error('module does not import lit-element')
@@ -35,7 +35,7 @@ const transform = async (
   if (cssImports.size === 0) {
     return {
       js: source,
-      css,
+      css: cssResultSet,
     }
   }
 
@@ -43,15 +43,16 @@ const transform = async (
     Array.from(cssImports).map((cssImport) =>
       (async () => {
         const { absolutePath, importSource, raw, specifier } = cssImport
-        const { css: processedCSS, classmap } = await processCSS(
+        const { css: processedCSS, classmap, dependencies } = await processCSS(
           raw,
           absolutePath
         )
-        css.add(
+        cssResultSet.add(
           immutable({
             absolutePath,
             css: processedCSS,
             classmap,
+            dependencies,
             importSource,
             raw,
             specifier,
@@ -71,14 +72,14 @@ const transform = async (
   }
 
   walk.full(AST, (node: DynamicAcornNode) => {
-    for (const pcss of css) {
+    for (const cssResult of cssResultSet) {
       for (const { should, mutate } of [
         inlineStylesheet,
         removeImport,
         replaceReferences,
       ]) {
-        if (should(node, pcss)) {
-          mutate(node, magicString, pcss, litImport)
+        if (should(node, cssResult)) {
+          mutate(node, magicString, cssResult, litImport)
         }
       }
     }
@@ -88,7 +89,7 @@ const transform = async (
 
   return {
     js,
-    css,
+    css: cssResultSet,
   }
 }
 
