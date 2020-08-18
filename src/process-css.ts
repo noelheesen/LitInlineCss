@@ -25,11 +25,15 @@ const processCSS = async (
     }
   }
 
-  const { css, classmap } = await postcss.process(rawCSS, absoluteSourcePath)
+  const { css, classmap, dependencies } = await postcss.process(
+    rawCSS,
+    absoluteSourcePath
+  )
 
   return immutable({
     css,
     classmap,
+    dependencies,
   })
 }
 
