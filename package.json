@@ -9,7 +9,7 @@
   ],
   "scripts": {
     "build": "sh scripts/build.sh",
-    "test": "jest --verbose"
+    "test:unit": "jest --verbose"
   },
   "dependencies": {
     "acorn": "^7.3.1",
@@ -50,6 +50,7 @@
   },
   "husky": {
     "hooks": {
+      "pre-commit": "yarn test:unit",
       "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
     }
   }
