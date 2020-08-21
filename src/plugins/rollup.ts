@@ -9,6 +9,8 @@ const factory = (): Plugin => {
 
     if (css.size > 0) {
       for (const importedCSS of css) {
+        this.addWatchFile(importedCSS.absolutePath)
+
         if (importedCSS.dependencies.size > 0) {
           for (const dep of importedCSS.dependencies) {
             this.addWatchFile(dep)
