@@ -1,9 +1,7 @@
 export type Nullable<T> = T | null
 
-export interface CSSResult {
+export interface CSSResult extends PostCSSProcessResult {
   absolutePath: string
-  css: string
-  classmap: Map<string, string>
   specifier: CSSImportNodeSpecifier
   raw: string
   importSource: string
@@ -60,5 +58,5 @@ export interface LitImportNode {
 
 export interface LitInlineCSSResult {
   js: string
-  css: Set<unknown>
+  css: Set<Readonly<CSSResult>>
 }
