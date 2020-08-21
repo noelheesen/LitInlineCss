@@ -1,12 +1,9 @@
 {
   "name": "lit-inline-css",
   "version": "0.0.0",
-  "main": "dist/cjs/index.js",
-  "module": "dist/esm/index.js",
+  "main": "index.js",
+  "module": "index.js",
   "license": "MIT",
-  "files": [
-    "dist/*"
-  ],
   "scripts": {
     "build": "sh scripts/build.sh",
     "test:unit": "jest --verbose"
